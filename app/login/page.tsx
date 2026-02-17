@@ -6,7 +6,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center shadow-xl">
         {/* Logo / Title */}
         <div className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight">
+          <h1 className="text-3xl font-bold tracking-tight text-blue-500">
             🔖 Smart Bookmarks
           </h1>
           <p className="mt-2 text-sm text-gray-400">
@@ -14,7 +14,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        //? Google OAuth Button 
+        
         <AuthButton />
       </div>
     </div>
