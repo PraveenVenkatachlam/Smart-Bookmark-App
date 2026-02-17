@@ -1,9 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-// This function creates a Supabase client that can read the session
-// from Next.js server-side cookies.  Used in Server Components,
-// Route Handlers, and Server Actions.
+
 
 export async function createClient() {
   const cookieStore = await cookies();

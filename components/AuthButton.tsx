@@ -4,10 +4,6 @@ import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-// Renders "Sign in with Google" on /login, and a sign-out
-// button on /dashboard.  It's a client component because
-// it triggers browser-side OAuth and navigation.
-
 export function AuthButton({ showSignOut = false }: { showSignOut?: boolean }) {
   const supabase = createClient();
   const router = useRouter();
@@ -18,7 +14,6 @@ export function AuthButton({ showSignOut = false }: { showSignOut?: boolean }) {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        // After Google authenticates, redirect here:
         redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
@@ -26,15 +21,13 @@ export function AuthButton({ showSignOut = false }: { showSignOut?: boolean }) {
       console.error("OAuth error:", error.message);
       setLoading(false);
     }
-    // The browser will navigate to Google's consent screen,
-    // so we don't need to setLoading(false) on success.
   };
 
   const handleSignOut = async () => {
     setLoading(true);
     await supabase.auth.signOut();
     router.push("/login");
-    router.refresh();        // clear server-side cached session
+    router.refresh();
   };
 
   if (showSignOut) {
@@ -59,7 +52,6 @@ export function AuthButton({ showSignOut = false }: { showSignOut?: boolean }) {
                  bg-white px-4 py-3 text-sm font-semibold text-gray-900
                  transition hover:bg-gray-100 disabled:opacity-50"
     >
-      {/* Google "G" SVG icon */}
       <svg className="h-5 w-5" viewBox="0 0 24 24">
         <path
           d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06
